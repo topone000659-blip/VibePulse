@@ -1,0 +1,11 @@
+VibePulse Backend Features
+
+[x] Auth
+[x] Profile Edit
+[x] Groups System
+[x] Image Upload
+[x] Video Upload
+[x] Friend Follow System
+[x] Realtime Chat
+[x] Push Notification Structure
+[x] Security Layer

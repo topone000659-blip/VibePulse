@@ -1,98 +1,146 @@
-import * as Device from 'expo-device';
-import { Platform, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { View, Text, StyleSheet, Pressable } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import { router } from "expo-router";
 
-import { AnimatedIcon } from '@/components/animated-icon';
-import { HintRow } from '@/components/hint-row';
-import { ThemedText } from '@/components/themed-text';
-import { ThemedView } from '@/components/themed-view';
-import { WebBadge } from '@/components/web-badge';
-import { BottomTabInset, MaxContentWidth, Spacing } from '@/constants/theme';
-
-function getDevMenuHint() {
-  if (Platform.OS === 'web') {
-    return <ThemedText type="small">use browser devtools</ThemedText>;
-  }
-  if (Device.isDevice) {
-    return (
-      <ThemedText type="small">
-        shake device or press <ThemedText type="code">m</ThemedText> in terminal
-      </ThemedText>
-    );
-  }
-  const shortcut = Platform.OS === 'android' ? 'cmd+m (or ctrl+m)' : 'cmd+d';
+export default function Index() {
   return (
-    <ThemedText type="small">
-      press <ThemedText type="code">{shortcut}</ThemedText>
-    </ThemedText>
-  );
-}
+    <LinearGradient
+      colors={["#4C1D95", "#6D28D9", "#06B6D4"]}
+      style={styles.container}
+    >
+      <View style={styles.logoArea}>
+        <View style={styles.wave}>
+          <View style={[styles.bar, styles.small]} />
+          <View style={[styles.bar, styles.big]} />
+          <View style={[styles.bar, styles.medium]} />
+          <View style={[styles.bar, styles.big]} />
+          <View style={[styles.bar, styles.small]} />
+        </View>
 
-export default function HomeScreen() {
-  return (
-    <ThemedView style={styles.container}>
-      <SafeAreaView style={styles.safeArea}>
-        <ThemedView style={styles.heroSection}>
-          <AnimatedIcon />
-          <ThemedText type="title" style={styles.title}>
-            Welcome to&nbsp;Expo
-          </ThemedText>
-        </ThemedView>
+        <Text style={styles.logo}>
+          Vibe Pulse
+        </Text>
 
-        <ThemedText type="code" style={styles.code}>
-          get started
-        </ThemedText>
+        <Text style={styles.tagline}>
+          Feel the vibe. Stay connected.
+        </Text>
+      </View>
 
-        <ThemedView type="backgroundElement" style={styles.stepContainer}>
-          <HintRow
-            title="Try editing"
-            hint={<ThemedText type="code">src/app/index.tsx</ThemedText>}
-          />
-          <HintRow title="Dev tools" hint={getDevMenuHint()} />
-          <HintRow
-            title="Fresh start"
-            hint={<ThemedText type="code">npm run reset-project</ThemedText>}
-          />
-        </ThemedView>
+      <View style={styles.bottom}>
+        <Text style={styles.title}>
+          Welcome to{"\n"}Vibe Pulse
+        </Text>
 
-        {Platform.OS === 'web' && <WebBadge />}
-      </SafeAreaView>
-    </ThemedView>
+        <Text style={styles.desc}>
+          Connect through real conversations,
+          groups, and good vibes.
+        </Text>
+
+        <Pressable style={styles.start} onPress={() => router.replace("/(tabs)/chats")}>
+          <Text style={styles.startText}>
+            Get Started
+          </Text>
+        </Pressable>
+
+        <Pressable style={styles.login} onPress={() => router.replace("/(tabs)/profile")}>
+          <Text style={styles.loginText}>
+            Create Account / Login
+          </Text>
+        </Pressable>
+      </View>
+    </LinearGradient>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row',
+    padding: 28,
+    justifyContent: "space-between",
   },
-  safeArea: {
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    alignItems: 'center',
-    gap: Spacing.three,
-    paddingBottom: BottomTabInset + Spacing.three,
-    maxWidth: MaxContentWidth,
+
+  logoArea: {
+    alignItems: "center",
+    marginTop: 120,
   },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: Spacing.four,
-    gap: Spacing.four,
+
+  wave: {
+    flexDirection: "row",
+    alignItems: "center",
+    height: 70,
   },
+
+  bar: {
+    width: 8,
+    backgroundColor: "#fff",
+    borderRadius: 10,
+    marginHorizontal: 5,
+  },
+
+  small: {
+    height: 30,
+  },
+
+  medium: {
+    height: 50,
+  },
+
+  big: {
+    height: 70,
+  },
+
+  logo: {
+    color: "#fff",
+    fontSize: 38,
+    fontWeight: "800",
+    marginTop: 25,
+  },
+
+  tagline: {
+    color: "#E2E8F0",
+    marginTop: 8,
+  },
+
+  bottom: {
+    marginBottom: 40,
+  },
+
   title: {
-    textAlign: 'center',
+    color: "#fff",
+    fontSize: 34,
+    fontWeight: "800",
   },
-  code: {
-    textTransform: 'uppercase',
+
+  desc: {
+    color: "#E2E8F0",
+    marginTop: 15,
+    lineHeight: 24,
   },
-  stepContainer: {
-    gap: Spacing.three,
-    alignSelf: 'stretch',
-    paddingHorizontal: Spacing.three,
-    paddingVertical: Spacing.four,
-    borderRadius: Spacing.four,
+
+  start: {
+    backgroundColor: "#fff",
+    padding: 17,
+    borderRadius: 30,
+    alignItems: "center",
+    marginTop: 30,
+  },
+
+  startText: {
+    color: "#6D28D9",
+    fontWeight: "800",
+  },
+
+  login: {
+    borderWidth: 1,
+    borderColor: "#fff",
+    padding: 17,
+    borderRadius: 30,
+    alignItems: "center",
+    marginTop: 15,
+  },
+
+  loginText: {
+    color: "#fff",
+    fontWeight: "700",
   },
 });
