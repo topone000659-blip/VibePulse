@@ -88,4 +88,4 @@ export default function TabTwoScreen() {
           </Collapsible>
 
           <Collapsible title="Images">
-            <ThemedText type
+            <ThemedText type>
