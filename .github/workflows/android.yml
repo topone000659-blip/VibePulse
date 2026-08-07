@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           npm install -g npm@latest
-          npm ci
+          npm install
 
       - name: Expo prebuild Android
         run: npx expo prebuild --platform android
@@ -42,3 +42,4 @@ jobs:
         with:
           name: VibePulse-release-apk
           path: android/app/build/outputs/apk/release/app-release.apk
+
