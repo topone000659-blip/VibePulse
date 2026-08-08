@@ -17,9 +17,7 @@ export default function Index() {
           <View style={[styles.bar, styles.small]} />
         </View>
 
-        <Text style={styles.logo}>
-          Vibe Pulse
-        </Text>
+        <Text style={styles.logo}>Vibe Pulse</Text>
 
         <Text style={styles.tagline}>
           Feel the vibe. Stay connected.
@@ -36,13 +34,17 @@ export default function Index() {
           groups, and good vibes.
         </Text>
 
-        <Pressable style={styles.start} onPress={() => router.replace("/(tabs)/chats")}>
-          <Text style={styles.startText}>
-            Get Started
-          </Text>
+        <Pressable
+          style={styles.start}
+          onPress={() => router.replace("/(tabs)/chats")}
+        >
+          <Text style={styles.startText}>Get Started</Text>
         </Pressable>
 
-        <Pressable style={styles.login} onPress={() => router.replace("/(tabs)/profile")}>
+        <Pressable
+          style={styles.login}
+          onPress={() => router.push("/country")}
+        >
           <Text style={styles.loginText}>
             Create Account / Login
           </Text>
